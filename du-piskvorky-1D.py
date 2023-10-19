@@ -52,8 +52,6 @@ def tah_hrace(pole):
       else:
         pole_nove = tah(pole, tah_input_cislo, 'x')
         return pole_nove
-      
-print(tah_hrace('-' * 20))
 
 '''
 Napiš funkci tah_pocitace, která dostane řetězec s herním polem, vybere pozici, na kterou hrát, a vrátí herní pole se zaznamenaným tahem počítače.
@@ -63,16 +61,50 @@ Použij jednoduchou náhodnou „strategii”:
  - Pokud ne, opakuj od bodu 1.
 Můžeš předpokládat, že řetězec s herním polem vždy obsahuje alespoň jednu volnou pozici.
 '''
+import random 
 
-# def tah_pocitace(pole):
-#     "Vrátí herní pole se zaznamenaným tahem počítače"
+def tah_pocitace(pole):
+  while True:
+    tah_nahodny = random.randrange(len(pole))
+
+    if pole[tah_nahodny] == '-':
+      pole_nove = tah(pole, tah_nahodny, 'o')
+      return pole_nove
 
 '''
 Napiš funkci piskvorky1d, která vytvoří řetězec s herním polem a střídavě volá funkce tah_hrace a tah_pocitace, dokud někdo nevyhraje nebo nedojde k remíze.
 Nezapomeň kontrolovat stav hry po každém tahu.
 '''
+def piskvorky1d():
+  pole = '-' * 20
+  kolo = 0
+  print(f'{kolo}. kolo: {pole}')
 
-# def piskvorky1d()
+  while True:
+    pole = tah_hrace(pole)
+    kolo += 1
+    print(f'{kolo}. kolo: {pole}')
+
+    stav = vyhodnot(pole)
+    if stav != '-':
+      break
+
+    pole = tah_pocitace(pole)
+    kolo += 1
+    print(f'{kolo}. kolo: {pole}')
+
+    stav = vyhodnot(pole)
+    if stav != '-':
+      break
+  
+  if stav == 'x':
+    print('Vyhrál/a jste! Gratuluji!')
+  elif stav == 'o':
+    print('Počítač vyhrál.')
+  else:
+    print('Remíza')
+
+piskvorky1d()
 
 '''
 Zvládneš pro počítač naprogramovat lepší strategii? Třeba aby se snažil hrát vedle svých existujících symbolů nebo aby bránil protihráčovi?
