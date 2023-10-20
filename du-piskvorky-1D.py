@@ -29,7 +29,7 @@ def vyhodnot(pole):
 Napiš funkci tah, která dostane řetězec s herním polem, číslo políčka (0-19), a symbol (x nebo o) a vrátí herní pole (t.j. řetězec) s daným symbolem umístěným na danou pozici.
 '''
 def tah(pole, cislo_policka, symbol):
- return pole[:cislo_policka] + symbol + pole[cislo_policka + 1:]
+  return pole[:cislo_policka] + symbol + pole[cislo_policka + 1:]
 
 '''
 Napiš funkci tah_hrace, která dostane řetězec s herním polem, zeptá se hráče, na kterou pozici chce hrát, a vrátí herní pole se zaznamenaným tahem hráče. Funkce by měla odmítnout záporná nebo příliš velká čísla a tahy na obsazená políčka. Pokud uživatel zadá špatný vstup, funkce mu vynadá a zeptá se znova.
@@ -61,16 +61,47 @@ Použij jednoduchou náhodnou „strategii”:
  - Pokud ne, opakuj od bodu 1.
 Můžeš předpokládat, že řetězec s herním polem vždy obsahuje alespoň jednu volnou pozici.
 '''
+# import random 
+# def tah_pocitace(pole):
+#   while True:
+#     tah_nahodny = random.randrange(len(pole))
+
+#     if pole[tah_nahodny] == '-':
+#       pole_nove = tah(pole, tah_nahodny, 'o')
+#       return pole_nove
+
+'''
+Zvládneš pro počítač naprogramovat lepší strategii? Třeba aby se snažil hrát vedle svých existujících symbolů nebo aby bránil protihráčovi?
+'''
 import random 
 
 def tah_pocitace(pole):
+  # Počítač se snaží umístit 'o' vedle svých existujících symbolů
+  array_o = ['-oo', 'o-o', 'oo-']
+
+  for i in range(len(array_o)):
+    index = pole.find(array_o[i])
+    if index != -1:
+      pole_nove = tah(pole, index + i, 'o')
+      return pole_nove
+    
+  # Počítač se snaží umístit 'o' vedle symbolů 'x' protihráče
+  array_x = ['-xx', 'x-x', 'xx-']
+
+  for i in range(len(array_x)):
+    index = pole.find(array_x[i])
+    if index != -1:
+      pole_nove = tah(pole, index + i, 'o')
+      return pole_nove
+
+  # Náhodné umístění 'o'
   while True:
     tah_nahodny = random.randrange(len(pole))
 
     if pole[tah_nahodny] == '-':
       pole_nove = tah(pole, tah_nahodny, 'o')
       return pole_nove
-
+    
 '''
 Napiš funkci piskvorky1d, která vytvoří řetězec s herním polem a střídavě volá funkce tah_hrace a tah_pocitace, dokud někdo nevyhraje nebo nedojde k remíze.
 Nezapomeň kontrolovat stav hry po každém tahu.
@@ -106,6 +137,3 @@ def piskvorky1d():
 
 piskvorky1d()
 
-'''
-Zvládneš pro počítač naprogramovat lepší strategii? Třeba aby se snažil hrát vedle svých existujících symbolů nebo aby bránil protihráčovi?
-'''
