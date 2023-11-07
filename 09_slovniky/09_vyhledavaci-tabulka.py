@@ -4,4 +4,18 @@ zlate_stranky = {
     'Cyril': '654213978'
 }
 
-print(zlate_stranky['Borivoj'])
+zlate_stranky['Pepa'] = '1591236753'
+
+print(zlate_stranky.values())
+print(zlate_stranky.keys())
+print(zlate_stranky.items())
+
+for jmeno, cislo in zlate_stranky.items():
+    print(jmeno)
+    print(cislo)
+    
+for jmeno in list(zlate_stranky):
+    if jmeno == 'Borivoj':
+        del zlate_stranky['Borivoj']
+    
+print(zlate_stranky)
