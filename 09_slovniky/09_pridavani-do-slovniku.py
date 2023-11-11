@@ -20,17 +20,18 @@ def pridej_do_slovniku(slovnik, jmeno, tel_cislo):
 def je_jmeno_ve_slovniku(slovnik, jmeno):
     return slovnik.get(jmeno)
 
-jmeno_zadane = input('Zadejte jmeno: ')
-
 while True:
+    jmeno_zadane = input('Zadejte jméno: ')
+
     if not je_jmeno_ve_slovniku(zlate_stranky, jmeno_zadane):
-        tel_cislo_zadane = input('Zadejte tel cislo: ')
-        if len(tel_cislo_zadane) != 9:
-            print('Tel cislo musi obsahovat 9 cisel.')
-            tel_cislo_zadane = input('Zadejte tel cislo: ')
+        tel_cislo_zadane = input('Zadejte telefonní číslo: ')
+
+        while len(tel_cislo_zadane) != 9:
+            print('Telefonní číslo musi mít 9 číslic.')
+            tel_cislo_zadane = input('Zadejte telefonní číslo: ')
+
         pridej_do_slovniku(zlate_stranky, jmeno_zadane, tel_cislo_zadane)
         print(zlate_stranky)
         break
     else:
-        print('Vypada, ze zadane jmeno je jiz v seznamu, zkuste jine jmeno.')
-        jmeno_zadane = input('Zadejte jmeno: ')
+        print('Vypadá to, že zadané jméno v seznamu není, zkuste jiné jméno.')
