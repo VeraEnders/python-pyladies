@@ -11,19 +11,18 @@ zlate_stranky = {
     'Filip': '608915433',
 }
 
-odpoved = input('Zadejte jmeno: ')
-
 def vypis_tel_cislo(jmeno_hledane):
-    for jmeno in zlate_stranky.keys():
-        if jmeno == jmeno_hledane:
-            return zlate_stranky[jmeno]
+    # for jmeno in zlate_stranky.keys():
+    #     if jmeno == jmeno_hledane:
+    #         return zlate_stranky[jmeno]
+    return zlate_stranky.get(jmeno_hledane)
 
 while True:
+    odpoved = input('Zadejte jméno: ')
     tel_cislo = vypis_tel_cislo(odpoved)
     if tel_cislo:
         print(tel_cislo)
         break
     else:
-        print('Vypada, ze zadane jmeno v seznamu neni, zkuste jine jmeno.')
-        odpoved = input('Zadejte jmeno: ')
+        print('Vypadá to, že zadané jméno v seznamu není, zkuste jiné jméno.')
         
