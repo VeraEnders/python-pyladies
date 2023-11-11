@@ -6,12 +6,11 @@ import pytest
     # Obsahuje polozku s klicem 'rasa' a libovolnou hodnotou
     # Obsahuje polozku s klicem 'vek' a libovolnou hodnotou
 def vytvor_psika():
-    pes = {
+    return {
         'jmeno': 'Chundelac',
         'rasa': 'Poulicni smes',
         'vek': 10
     }
-    return pes
 
 #Uprav funkci tak, ze:
     # Vaha kocky bude 11
@@ -21,17 +20,15 @@ def vytvor_kocicku():
     kocicka = {
         'jmeno': 'Drobek',
         'oblibene_krmivo': 'CatFood Premium Deluxe',
-        'vaha': 11,
-        'rasa': 'Poulicni smes',
-        'vek': 5
+        'vaha': 10,
+        'rasa': 'Poulicni smes'
     }
 
     del kocicka['rasa']
+    kocicka['vek'] = 5
+    kocicka['vaha'] = 11
 
     return kocicka
-
-# print(vytvor_psika())
-# print(vytvor_kocicku())
 
 # Bonus: Zkontroluj spravnost sve implementace pomoci testu
 # 1. Ujistete se, ze mate vytvorene virtualni prostredi 'venv'
@@ -48,8 +45,6 @@ def vytvor_kocicku():
 #    - python -m pytest -v [jmeno-souboru.py]
 #    - python -m pytest -v 3-slovniky-ukol-zadani.py
 #    - uspesne spusteni: ========================== 1 passed in 0.03 seconds ===========================
-
-
 
 def test_psik_ma_spravne_jmeno():
     pes = vytvor_psika()
