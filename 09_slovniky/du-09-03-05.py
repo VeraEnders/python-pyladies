@@ -26,6 +26,20 @@ Na příslušných místech nahraď tečky X-ky.
 Tabulku vypiš pomocí dvou cyklů for zanořených do sebe.
 '''
 
+def nakresli_mapu(seznam_souradnic):
+  mapa = []
+
+  for _ in range(10):
+    mapa.append(['.'] * 10)
+
+  for radek, pozice in seznam_souradnic:
+    mapa[pozice][radek] = 'X'
+
+  for i in mapa:
+    print(' '.join(i))
+
+nakresli_mapu([(0, 0), (1, 0), (2, 2), (4, 3), (8, 9), (8, 9)])
+
 '''
 Ukol 4
 Napiš funkci pohyb, která dostane seznam souřadnic a světovou stranu ("s", "j", "v" nebo "z") a přidá k seznamu poslední bod „posunutý“ v daném směru. Např.:
