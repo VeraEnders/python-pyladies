@@ -38,7 +38,7 @@ def nakresli_mapu(seznam_souradnic):
   for i in mapa:
     print(' '.join(i))
 
-nakresli_mapu([(0, 0), (1, 0), (2, 2), (4, 3), (8, 9), (8, 9)])
+# nakresli_mapu([(0, 0), (1, 0), (2, 2), (4, 3), (8, 9), (8, 9)])
 
 '''
 Ukol 4
@@ -55,6 +55,30 @@ pohyb(souradnice, 's')
 print(souradnice)         # → [(0, 0), (1, 0), (2, 0), (2, 1), (2, 0)]
 Funkce by neměla nic vracet. Jen mění už existující seznam.
 '''
+
+def pohyb(seznam_souradnic, svetova_strana):
+  posledni_bod = seznam_souradnic[-1]
+  x = posledni_bod[0]
+  y = posledni_bod[1]
+
+  if svetova_strana == 's':
+    seznam_souradnic.append((x, y - 1))
+  elif svetova_strana == 'j':
+    seznam_souradnic.append((x, y + 1))
+  elif svetova_strana == 'v':
+    seznam_souradnic.append((x + 1, y))
+  elif svetova_strana == 'z':
+    seznam_souradnic.append((x - 1, y))
+
+souradnice = [(0, 0)]
+pohyb(souradnice, 'v')
+print(souradnice)         # → [(0, 0), (1, 0)]
+pohyb(souradnice, 'v')
+print(souradnice)         # → [(0, 0), (1, 0), (2, 0)]
+pohyb(souradnice, 'j')
+print(souradnice)         # → [(0, 0), (1, 0), (2, 0), (2, 1)]
+pohyb(souradnice, 's')
+print(souradnice)         # → [(0, 0), (1, 0), (2, 0), (2, 1), (2, 0)]
 
 '''
 Ukol 5
