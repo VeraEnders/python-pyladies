@@ -21,13 +21,15 @@ def zpracuj_rodne_cislo(rodne_cislo):
   else:
     rok += 2000
     
-  mesic = int(rodne_cislo[2:4]) % 50
-  den = int(rodne_cislo[4:6])
+  mesic = int(rodne_cislo[2:4])
 
   if mesic > 12:
     pohlavi = 'žena'
+    mesic -= 50
   else:
     pohlavi = 'muž'
+
+  den = int(rodne_cislo[4:6])
 
   return (rok, mesic, den, pohlavi)
 
