@@ -15,7 +15,21 @@ print(zpracuj_rodne_cislo('0007021234')) # (2000, 7, 2, 'muž')
 '''
 
 def zpracuj_rodne_cislo(rodne_cislo):
-  
+  rok = int(rodne_cislo[:2])
+  if rok >= 54:
+    rok += 1900
+  else:
+    rok += 2000
+    
+  mesic = int(rodne_cislo[2:4]) % 50
+  den = int(rodne_cislo[4:6])
+
+  if mesic > 12:
+    pohlavi = 'žena'
+  else:
+    pohlavi = 'muž'
+
+  return (rok, mesic, den, pohlavi)
 
 print(zpracuj_rodne_cislo('9057121234')) # (1990, 7, 12, 'žena')
 print(zpracuj_rodne_cislo('0007021234')) # (2000, 7, 2, 'muž')
